@@ -8,8 +8,7 @@
 			@toggle-edit="emits('toggleEdit')"
 			@open-search="emits('openSearch')"
 			@go-back="emits('goBack')"
-			@show-starred-images="albumCallbacks.toggleStarred()"
-			@show-selected="albumCallbacks.copyStarred()"
+			@show-selected="albumCallbacks.copyHighlighted()"
 		/>
 		<template v-if="albumStore.album && albumStore.config && userStore.isLoaded">
 			<div id="galleryView" class="relative flex flex-wrap content-start w-full justify-start overflow-y-auto h-full select-none">
@@ -236,23 +235,23 @@ const albumPanelConfig = computed<AlbumThumbConfig>(() => ({
 
 const photoCallbacks = {
 	star: () => {
-		PhotoService.star(selectedPhotosIds.value, true);
+		PhotoService.highlight(selectedPhotosIds.value, true);
 		// Update the photos in the store immediately to reflect the change
 		selectedPhotosIds.value.forEach((photoId) => {
 			const photo = photosStore.photos.find((p) => p.id === photoId);
 			if (photo) {
-				photo.is_starred = true;
+				photo.is_highlighted = true;
 			}
 		});
 		AlbumService.clearCache(albumStore.album?.id);
 	},
 	unstar: () => {
-		PhotoService.star(selectedPhotosIds.value, false);
+		PhotoService.highlight(selectedPhotosIds.value, false);
 		// Update the photos in the store immediately to reflect the change
 		selectedPhotosIds.value.forEach((photoId) => {
 			const photo = photosStore.photos.find((p) => p.id === photoId);
 			if (photo) {
-				photo.is_starred = false;
+				photo.is_highlighted = false;
 			}
 		});
 		AlbumService.clearCache(albumStore.album?.id);
@@ -331,21 +330,9 @@ const albumCallbacks = {
 		AlbumService.download(selectedAlbumsIds.value);
 	},
 	togglePin: togglePin,
-	toggleStarred: () => {
-		if (!albumStore.album?.id) return;
-		if (albumStore.showStarredOnly) {
-			albumStore.setShowStarredOnly(false);
-			photosStore.setPhotoRatingFilter(null);
-		} else {
-			albumStore.setShowStarredOnly(true);
-			photosStore.setPhotoRatingFilter("starred");
-		}
-
-		unselect();
-	},
-	copyStarred: () => {
-		const starred = photosStore.photos.filter((p) => p.is_starred);
-		const selectedNames = starred
+	copyHighlighted: () => {
+		const highlighted = photosStore.photos.filter((p) => p.is_highlighted);
+		const selectedNames = highlighted
 			.map((p) => {
 				const dotIndex = p.title.lastIndexOf(".");
 				return dotIndex > 0 ? p.title.substring(0, dotIndex) : p.title;

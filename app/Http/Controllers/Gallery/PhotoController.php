@@ -27,7 +27,7 @@ use App\Http\Requests\Photo\MovePhotosRequest;
 use App\Http\Requests\Photo\RenamePhotoRequest;
 use App\Http\Requests\Photo\RotatePhotoRequest;
 use App\Http\Requests\Photo\SetPhotoRatingRequest;
-use App\Http\Requests\Photo\SetPhotosStarredRequest;
+use App\Http\Requests\Photo\SetPhotosHighlightedRequest;
 use App\Http\Requests\Photo\SetPhotosTagsRequest;
 use App\Http\Requests\Photo\UploadPhotoRequest;
 use App\Http\Requests\Photo\WatermarkPhotoRequest;
@@ -165,12 +165,12 @@ class PhotoController extends Controller
 	}
 
 	/**
-	 * Set the is-starred attribute of the given photos.
+	 * Set the is-highlighted attribute of the given photos.
 	 */
-	public function star(SetPhotosStarredRequest $request): void
+	public function highlight(SetPhotosHighlightedRequest $request): void
 	{
 		foreach ($request->photos() as $photo) {
-			$photo->is_starred = $request->isStarred();
+			$photo->is_highlighted = $request->isHighlighted();
 			$photo->save();
 		}
 	}
