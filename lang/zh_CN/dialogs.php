@@ -120,6 +120,7 @@ return [
         'uploading' => '上传中',
         'finished' => '已完成',
         'failed_error' => '上传失败。服务器返回错误！',
+        'apply_watermark' => 'Apply watermark',
     ],
     'visibility' => [
         'public' => '公开',

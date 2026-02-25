@@ -120,6 +120,7 @@ return [
         'uploading' => 'Przesyłanie',
         'finished' => 'Zakończono',
         'failed_error' => 'Przesyłanie nie powiodło się. Serwer zwrócił błąd!',
+        'apply_watermark' => 'Apply watermark',
     ],
     'visibility' => [
         'public' => 'Publiczny',

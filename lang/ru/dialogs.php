@@ -120,6 +120,7 @@ return [
         'uploading' => 'Загрузка',
         'finished' => 'Завершено',
         'failed_error' => 'Не удалось загрузить. Сервер вернул ошибку!',
+        'apply_watermark' => 'Apply watermark',
     ],
     'visibility' => [
         'public' => 'Публичный',

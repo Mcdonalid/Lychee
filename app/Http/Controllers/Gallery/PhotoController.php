@@ -85,6 +85,7 @@ class PhotoController extends Controller
 			$final,
 			$request->album(),
 			$request->file_last_modified_time(),
+			$request->apply_watermark(),
 			$meta);
 	}
 
@@ -94,6 +95,7 @@ class PhotoController extends Controller
 		NativeLocalFile $final,
 		?AbstractAlbum $album,
 		?int $file_last_modified_time,
+		?bool $apply_watermark,
 		UploadMetaResource $meta,
 	): UploadMetaResource {
 		$processable_file = new ProcessableJobFile(
@@ -120,7 +122,7 @@ class PhotoController extends Controller
 			return $meta;
 		}
 
-		ProcessImageJob::dispatch($processable_file, $album, $file_last_modified_time);
+		ProcessImageJob::dispatch($processable_file, $album, $file_last_modified_time, $apply_watermark);
 		$meta->stage = config('queue.default') === 'sync' ? FileStatus::DONE : FileStatus::READY;
 
 		return $meta;
