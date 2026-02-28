@@ -10,6 +10,10 @@ return [
     'pinned_albums' => 'Закреплённые альбомы',
     'albums' => 'Альбомы',
     'root' => 'Альбомы',
+    'set_focus' => 'Set Focus',
+    'set_header_focus' => 'Set Header Focus',
+    'done' => 'Done',
+    'cancel' => 'Cancel',
     'tabs' => [
         'my_albums' => 'My Albums',
         'shared_with_me' => 'Shared with Me',
@@ -120,6 +124,9 @@ return [
             'share' => 'Поделиться альбомом',
             'embed' => 'Embed Album',
             'stats_only_se' => 'Статистика доступна в версии для поддерживающих пользователей',
+            'edit' => 'Edit',
+            'save' => 'Save',
+            'open_gallery' => 'Open gallery',
             'apply_renamer' => 'Apply Renamer Rules',
             'watermark' => 'Watermark',
         ],
@@ -155,6 +162,7 @@ return [
             'tags_required' => 'Теги обязательны.',
             'all_tags_must_match' => 'Все теги должны совпадать.',
         ],
+
     ],
     'photo' => [
         'actions' => [

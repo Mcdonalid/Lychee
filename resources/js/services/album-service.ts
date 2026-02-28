@@ -33,6 +33,13 @@ export type UpdateAbumData = {
 	photo_timeline: App.Enum.TimelinePhotoGranularity | null;
 };
 
+export type UpdateAlbumHeaderData = {
+	album_id: string;
+	title_color: App.Enum.AlbumTitleColor | null;
+	title_position: App.Enum.AlbumTitlePosition | null;
+	header_photo_focus: { x: number; y: number } | null;
+};
+
 export type UpdateTagAlbumData = {
 	album_id: string;
 	title: string;
@@ -134,6 +141,10 @@ const AlbumService = {
 
 	updateAlbum(data: UpdateAbumData): Promise<AxiosResponse> {
 		return axios.patch(`${Constants.getApiUrl()}Album`, data);
+	},
+
+	updateAlbumHeader(data: UpdateAlbumHeaderData): Promise<AxiosResponse> {
+		return axios.patch(`${Constants.getApiUrl()}Album::header`, data);
 	},
 
 	updateTag(data: UpdateTagAlbumData): Promise<AxiosResponse> {

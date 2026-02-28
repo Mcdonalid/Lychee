@@ -10,6 +10,10 @@ return [
     'pinned_albums' => 'آلبوم‌های سنجاق‌شده',
     'albums' => 'آلبوم‌ها',
     'root' => 'آلبوم‌ها',
+    'set_focus' => 'Set Focus',
+    'set_header_focus' => 'Set Header Focus',
+    'done' => 'Done',
+    'cancel' => 'Cancel',
     'tabs' => [
         'my_albums' => 'My Albums',
         'shared_with_me' => 'Shared with Me',
@@ -120,6 +124,9 @@ return [
             'share' => 'اشتراک‌گذاری آلبوم',
             'embed' => 'Embed Album',
             'stats_only_se' => 'آمار فقط در نسخه حامیان در دسترس است',
+            'edit' => 'Edit',
+            'save' => 'Save',
+            'open_gallery' => 'Open gallery',
             'apply_renamer' => 'Apply Renamer Rules',
             'watermark' => 'Watermark',
         ],
@@ -155,6 +162,7 @@ return [
             'tags_required' => 'برچسب‌ها الزامی هستند.',
             'all_tags_must_match' => 'همه برچسب‌ها باید مطابقت داشته باشند.',
         ],
+
     ],
     'photo' => [
         'actions' => [

@@ -10,6 +10,10 @@ return [
     'pinned_albums' => 'Albums épinglés',
     'albums' => 'Albums',
     'root' => 'Albums',
+    'set_focus' => 'Set Focus',
+    'set_header_focus' => 'Set Header Focus',
+    'done' => 'Done',
+    'cancel' => 'Cancel',
     'tabs' => [
         'my_albums' => 'Mes albums',
         'shared_with_me' => 'Partagé avec moi',
@@ -117,6 +121,9 @@ return [
             'download' => 'Télécharger l\'album',
             'share' => 'Partager l\'album',
             'embed' => 'Embed Album',
+            'edit' => 'Edit',
+            'save' => 'Save',
+            'open_gallery' => 'Open gallery',
             'stats_only_se' => 'Statistiques disponibles dans l\'édition Supporter',
             'apply_renamer' => 'Apply Renamer Rules',
             'watermark' => 'Watermark',
@@ -153,6 +160,7 @@ return [
             'tags_required' => 'Les étiquettes sont obligatoires.',
             'all_tags_must_match' => 'Toutes les étiquettes doivent être présentes.',
         ],
+
     ],
     'photo' => [
         'actions' => [

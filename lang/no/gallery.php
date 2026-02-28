@@ -11,6 +11,10 @@ return [
     'pinned_albums' => 'Festede album',
     'albums' => 'Album',
     'root' => 'Album',
+    'set_focus' => 'Set Focus',
+    'set_header_focus' => 'Set Header Focus',
+    'done' => 'Done',
+    'cancel' => 'Cancel',
     'tabs' => [
         'my_albums' => 'My Albums',
         'shared_with_me' => 'Shared with Me',
@@ -121,6 +125,9 @@ return [
             'share' => 'Del Album',
             'embed' => 'Embed Album',
             'stats_only_se' => 'Statistikk tilgjengelig i Supporter Edition',
+            'edit' => 'Edit',
+            'save' => 'Save',
+            'open_gallery' => 'Open gallery',
             'apply_renamer' => 'Apply Renamer Rules',
             'watermark' => 'Watermark',
         ],
@@ -156,6 +163,7 @@ return [
             'tags_required' => 'Tagger er obligatoriske.',
             'all_tags_must_match' => 'Alle taggene må samsvare.',
         ],
+
     ],
     'photo' => [
         'actions' => [

@@ -10,6 +10,10 @@ return [
     'pinned_albums' => 'Vorgeschlagene Alben',
     'albums' => 'Alben',
     'root' => 'Alben',
+    'set_focus' => 'Set Focus',
+    'set_header_focus' => 'Set Header Focus',
+    'done' => 'Done',
+    'cancel' => 'Cancel',
     'tabs' => [
         'my_albums' => 'My Albums',
         'shared_with_me' => 'Shared with Me',
@@ -120,6 +124,9 @@ return [
             'share' => 'Album teilen',
             'embed' => 'Embed Album',
             'stats_only_se' => 'In der Supporter-Edition verfügbare Statistiken',
+            'edit' => 'Edit',
+            'save' => 'Save',
+            'open_gallery' => 'Open gallery',
             'apply_renamer' => 'Apply Renamer Rules',
             'watermark' => 'Watermark',
         ],
@@ -155,6 +162,7 @@ return [
             'tags_required' => 'Tags sind erforderlich.',
             'all_tags_must_match' => 'Alle Tags müssen übereinstimmen.',
         ],
+
     ],
     'photo' => [
         'actions' => [

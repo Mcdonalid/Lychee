@@ -21,6 +21,8 @@ use App\Actions\Album\SetSmartProtectionPolicy;
 use App\Actions\Album\Transfer;
 use App\Actions\Album\Unlock;
 use App\Actions\Photo\BaseArchive as PhotoBaseArchive;
+use App\Enum\AlbumTitleColor;
+use App\Enum\AlbumTitlePosition;
 use App\Enum\SizeVariantType;
 use App\Events\AlbumRouteCacheUpdated;
 use App\Events\Metrics\AlbumDownload;
@@ -43,6 +45,7 @@ use App\Http\Requests\Album\SetPinnedRequest;
 use App\Http\Requests\Album\TargetListAlbumRequest;
 use App\Http\Requests\Album\TransferAlbumRequest;
 use App\Http\Requests\Album\UnlockAlbumRequest;
+use App\Http\Requests\Album\UpdateAlbumHeaderRequest;
 use App\Http\Requests\Album\UpdateAlbumRequest;
 use App\Http\Requests\Album\UpdateTagAlbumRequest;
 use App\Http\Requests\Album\WatermarkAlbumRequest;
@@ -269,6 +272,20 @@ class AlbumController extends Controller
 	public function header(SetAsHeaderRequest $request, SetHeader $set_header): void
 	{
 		$set_header->do($request->album(), $request->is_compact(), $request->photo());
+	}
+
+	/**
+	 * Update the album header customization (title color, position, focus point).
+	 */
+	public function updateAlbumHeader(UpdateAlbumHeaderRequest $request): EditableBaseAlbumResource
+	{
+		$album = $request->album();
+		$album->title_color = $request->titleColor() ?? AlbumTitleColor::WHITE;
+		$album->title_position = $request->titlePosition() ?? AlbumTitlePosition::TOP_LEFT;
+		$album->header_photo_focus = $request->headerPhotoFocus();
+		$album->save();
+
+		return EditableBaseAlbumResource::fromModel($album);
 	}
 
 	/**

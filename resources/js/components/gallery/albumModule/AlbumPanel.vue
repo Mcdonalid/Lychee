@@ -33,6 +33,7 @@
 					@open-embed-code="toggleEmbedCode"
 					@open-statistics="toggleStatistics"
 					@toggle-slide-show="emits('toggleSlideShow')"
+					@scroll-to-pictures="albumCallbacks.scrollToPaginatorTop"
 					@toggle-apply-renamer="toggleApplyRenamer"
 					@toggle-watermark-confirm="toggleWatermarkConfirm"
 					@toggle-download-album="toggleDownloadAlbumFromHero"
@@ -82,6 +83,7 @@
 					@selected="photoSelect"
 					@contexted="contextMenuPhotoOpen"
 					@toggle-buy-me="toggleBuyMe"
+					ref="photoPanel"
 				/>
 				<!-- Pagination for photos -->
 				<Pagination
@@ -129,7 +131,7 @@
 	</div>
 </template>
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, ComponentPublicInstance } from "vue";
 import AlbumThumbPanel from "@/components/gallery/albumModule/AlbumThumbPanel.vue";
 import PhotoThumbPanel from "@/components/gallery/albumModule/PhotoThumbPanel.vue";
 import ShareAlbum from "@/components/modals/ShareAlbum.vue";
@@ -186,6 +188,10 @@ const layoutStore = useLayoutStore();
 const togglableStore = useTogglablesStateStore();
 const lycheeStore = useLycheeStateStore();
 const orderManagement = useOrderManagementStore();
+
+if (!albumsStore.rootRights) {
+	albumsStore.loadRootRights();
+}
 
 const emits = defineEmits<{
 	refresh: [];
@@ -306,6 +312,18 @@ const photoCallbacks = {
 		const isToggleOff = albumStore.modelAlbum?.header_id === selectedPhoto.value!.id;
 		if (albumStore.modelAlbum !== undefined) {
 			albumStore.modelAlbum.header_id = isToggleOff ? null : selectedPhoto.value!.id;
+			if (albumStore.modelAlbum.preFormattedData) {
+				albumStore.modelAlbum.preFormattedData.header_photo_focus = null;
+			}
+		}
+		if (
+			albumStore.album !== undefined &&
+			"editable" in albumStore.album &&
+			albumStore.album.editable !== undefined &&
+			albumStore.album.editable !== null
+		) {
+			albumStore.album.editable.header_id = isToggleOff ? null : selectedPhoto.value!.id;
+			albumStore.album.preFormattedData.header_photo_focus = null;
 		}
 		// Update the header image URL in the album's preFormattedData
 		if (albumStore.album.preFormattedData) {
@@ -315,6 +333,7 @@ const photoCallbacks = {
 				// Use medium or small variant for the header image
 				const headerUrl = selectedPhoto.value!.size_variants.medium?.url ?? selectedPhoto.value!.size_variants.small?.url ?? null;
 				albumStore.album.preFormattedData.url = headerUrl;
+				albumStore.album.preFormattedData.header_photo_focus = null;
 			}
 		}
 		AlbumService.clearCache(albumStore.album.id);
@@ -394,10 +413,16 @@ const albumCallbacks = {
 				}),
 			);
 	},
+	scrollToPaginatorTop: () => {
+		if (photoPanel.value) {
+			photoPanel.value.$el.scrollIntoView({ behavior: "smooth" });
+		}
+	},
 };
 
 const computedAlbum = computed(() => albumStore.album);
 const computedConfig = computed(() => albumStore.config);
+const photoPanel = ref<ComponentPublicInstance | null>(null);
 
 const {
 	menu,
