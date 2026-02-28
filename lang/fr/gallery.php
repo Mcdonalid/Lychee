@@ -133,6 +133,9 @@ return [
         ],
         'properties' => [
             'title' => 'Titre',
+            'slug' => 'Slug (URL conviviale)',
+            'generate_slug' => 'Generate slug from title',
+            'copy_slug_url' => 'Copy URL to clipboard',
             'description' => 'Description',
             'photo_ordering' => 'Ordre des photos',
             'children_ordering' => 'Ordre des albums',
