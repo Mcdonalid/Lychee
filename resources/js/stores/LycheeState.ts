@@ -67,6 +67,9 @@ export const useLycheeStateStore = defineStore("lychee-store", {
 		// menu stuff
 		clockwork_url: "" as null | string,
 
+		// Contact stuff
+		is_contact_form_enabled: false,
+
 		// Timeline settings
 		is_timeline_left_border_visible: true,
 
@@ -227,6 +230,8 @@ export const useLycheeStateStore = defineStore("lychee-store", {
 					this.albums_infinite_scroll_threshold = data.albums_infinite_scroll_threshold;
 
 					this.default_album_protection = data.default_album_protection;
+
+					this.is_contact_form_enabled = data.is_contact_form_enabled;
 				})
 				.catch((error) => {
 					// In this specific case, even though it has been possibly disabled, we really need to see the error.

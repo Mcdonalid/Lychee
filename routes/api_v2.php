@@ -25,6 +25,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/LandingPage', LandingPageController::class)->middleware(['cache_control']);
 Route::get('/Frame', [Gallery\FrameController::class, 'get']);
 
+/**
+ * CONTACT FORM.
+ */
+Route::get('/Contact::Init', [Contact\ContactController::class, 'init'])->middleware(['cache_control', 'support:se']);
+Route::post('/Contact', [Contact\ContactController::class, 'store'])->middleware(['throttle:5,1440', 'support:se']);
+Route::get('/Contact', [Contact\ContactController::class, 'index'])->middleware('support:se');
+Route::patch('/Contact', [Contact\ContactController::class, 'update'])->middleware('support:se');
+Route::delete('/Contact', [Contact\ContactController::class, 'destroy'])->middleware('support:se');
+
 Route::get('/Gallery::Init', [Gallery\ConfigController::class, 'getInit']);
 Route::get('/Gallery::Footer', [Gallery\ConfigController::class, 'getFooter'])->middleware(['cache_control']);
 Route::get('/Gallery::getLayout', [Gallery\ConfigController::class, 'getGalleryLayout'])->middleware(['cache_control']);
